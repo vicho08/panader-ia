@@ -1,4 +1,5 @@
 from fastapi import FastAPI, Depends, HTTPException, status
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
 
@@ -11,6 +12,20 @@ import models, schemas
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="API de Panadería")
+
+# Configuración de CORS
+origins = [
+    "http://localhost",
+    "http://localhost:3000"
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,          # Permite los orígenes especificados
+    allow_credentials=True,         # Permite credenciales (cookies, encabezados de autorización)
+    allow_methods=["*"],            # Permite todos los métodos (GET, POST, PUT, DELETE, etc.)
+    allow_headers=["*"],            # Permite todos los encabezados
+)
 
 # Endpoint de prueba
 @app.get("/")
@@ -51,9 +66,6 @@ def read_producto(producto_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="Producto no encontrado")
     return db_producto
 
-# ----------------------------------------------------------------------
-# Opcional: Endpoints para PEDIDOS (no solicitados, pero incluidos para referencia)
-# ----------------------------------------------------------------------
 
 @app.post("/pedidos/", response_model=schemas.Pedido, status_code=status.HTTP_201_CREATED)
 def create_pedido(pedido: schemas.PedidoCreate, db: Session = Depends(get_db)):
