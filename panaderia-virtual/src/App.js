@@ -68,7 +68,7 @@ function App() {
      console.log('Enviando pedido:', orderBody);
 
     try {
-      const response = await fetch('http://localhost:8000/pedidos', { // Asumiendo que /pedidos está en el puerto 8000
+      const response = await fetch('http://localhost:8000/pedidos', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -85,9 +85,7 @@ function App() {
       console.log('Pedido enviado con éxito:', responseData);
       alert('¡Gracias por tu pedido! Tu pedido ha sido procesado con éxito.');
       setCartItems([]); // Vaciar carrito después de finalizar el pedido
-      // clientInfo es reseteado por CheckoutForm, no necesitamos hacerlo aquí
       setShowCart(false);
-
     } catch (error) {
       console.error('Hubo un problema al enviar el pedido:', error);
       alert(`No se pudo finalizar el pedido: ${error.message}. Por favor, intenta de nuevo.`);

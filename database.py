@@ -7,8 +7,14 @@ from dotenv import load_dotenv
 # Carga las variables de entorno desde el archivo .env
 load_dotenv()
 
-# Obtén la URL de la base de datos de las variables de entorno
-DATABASE_URL = os.getenv("DATABASE_URL")
+DATABASE_USER = os.environ.get("DB_USER", "postgres")
+DATABASE_PASSWORD = os.environ.get("DB_PASSWORD") # Esto vendrá de Secret Manager
+DATABASE_NAME = os.environ.get("DB_NAME", "panaderia")
+DATABASE_HOST = "127.0.0.1" # IMPORTANTE: localhost porque Cloud SQL Proxy lo maneja
+DATABASE_PORT = os.environ.get("DB_PORT", "5432")
+
+# Cadena de conexión (para PostgreSQL)
+DATABASE_URL = f"postgresql://{DATABASE_USER}:{DATABASE_PASSWORD}@{DATABASE_HOST}:{DATABASE_PORT}/{DATABASE_NAME}"
 
 # Verifica que DATABASE_URL esté configurada
 if not DATABASE_URL:
