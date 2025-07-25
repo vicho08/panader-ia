@@ -25,7 +25,8 @@ COPY . .
 #    Define el puerto en el que la aplicación FastAPI escuchará.
 #    Aunque Cloud Run inyectará su propia variable de entorno $PORT, es buena práctica
 #    tener un valor predeterminado o explicitarlo.
-ENV PORT 8000
+ENV PORT 8080
+EXPOSE 8080
 
 # 6. COMANDO DE EJECUCIÓN:
 #    Define el comando que se ejecutará cuando el contenedor se inicie.
@@ -34,4 +35,4 @@ ENV PORT 8000
 #                       lo cual es necesario para que el contenedor sea accesible.
 #    "--port 8000": Le dice a Uvicorn que escuche en el puerto 8000. En Cloud Run,
 #                   este puerto será mapeado al puerto asignado por $PORT.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port",  "$PORT"]
