@@ -35,4 +35,4 @@ EXPOSE 8080
 #                       lo cual es necesario para que el contenedor sea accesible.
 #    "--port 8000": Le dice a Uvicorn que escuche en el puerto 8000. En Cloud Run,
 #                   este puerto será mapeado al puerto asignado por $PORT.
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port",  "$PORT"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8080"]
