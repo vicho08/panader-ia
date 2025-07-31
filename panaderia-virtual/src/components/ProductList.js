@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 
+const BACKEND_URL = process.env.REACT_APP_BACKEND_API_URL || 'http://localhost:8000'; 
+
 const ProductList = ({ addToCart }) => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -8,7 +10,7 @@ const ProductList = ({ addToCart }) => {
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const response = await fetch('http://localhost:8000/productos');
+        const response = await fetch(`${BACKEND_URL}/productos`);
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);
         }
