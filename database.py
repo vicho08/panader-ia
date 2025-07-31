@@ -10,7 +10,7 @@ load_dotenv()
 DATABASE_USER = os.environ.get("DB_USER", "postgres")
 DATABASE_PASSWORD = os.environ.get("DB_PASSWORD") # Esto vendrá de Secret Manager
 DATABASE_NAME = os.environ.get("DB_NAME", "panaderia")
-DATABASE_HOST = "127.0.0.1" # IMPORTANTE: localhost porque Cloud SQL Proxy lo maneja
+DATABASE_HOST = "34.27.186.16" # IMPORTANTE: localhost porque Cloud SQL Proxy lo maneja
 DATABASE_PORT = os.environ.get("DB_PORT", "5432")
 
 # Cadena de conexión (para PostgreSQL)

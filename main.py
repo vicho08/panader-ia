@@ -16,7 +16,9 @@ app = FastAPI(title="API de Panadería")
 # Configuración de CORS
 origins = [
     "http://localhost",
-    "http://localhost:3000"
+    "http://localhost:3000",
+    "https://panaderia-backend-586791903884.us-central1.run.app", # URL backend
+    "https://panaderia-frontend-586791903884.us-central1.run.app" # URL frontend
 ]
 
 app.add_middleware(

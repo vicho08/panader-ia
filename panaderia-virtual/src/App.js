@@ -68,7 +68,7 @@ function App() {
      console.log('Enviando pedido:', orderBody);
 
     try {
-      const response = await fetch('http://localhost:8000/pedidos', {
+      const response = await fetch('https://panaderia-backend-586791903884.us-central1.run.app/pedidos/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
