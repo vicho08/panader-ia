@@ -5,6 +5,8 @@ import CheckoutForm from './components/CheckoutForm';
 import './App.css'; // Asegúrate de crear este archivo para los estilos
 
 function App() {
+  const backendUrl = process.env.REACT_APP_BACKEND_API_URL;
+
   const [products] = useState([
     { id: 1, name: 'Pan de Masa Madre', price: 5.50 },
     { id: 2, name: 'Croissant', price: 2.75 },
@@ -68,7 +70,7 @@ function App() {
      console.log('Enviando pedido:', orderBody);
 
     try {
-      const response = await fetch('https://panaderia-backend-586791903884.us-central1.run.app/pedidos/', {
+      const response = await fetch(`${backendUrl}/pedidos/`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

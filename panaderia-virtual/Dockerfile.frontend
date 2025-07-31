@@ -4,6 +4,10 @@ FROM node:18-alpine as build-stage
 # Establece el directorio de trabajo dentro del contenedor
 WORKDIR /app
 
+ARG REACT_APP_BACKEND_API_URL
+
+ENV REACT_APP_BACKEND_API_URL=$REACT_APP_BACKEND_API_URL
+
 # Copia package.json y package-lock.json para instalar dependencias primero
 # Esto ayuda a aprovechar el cache de Docker si las dependencias no cambian
 COPY package*.json ./

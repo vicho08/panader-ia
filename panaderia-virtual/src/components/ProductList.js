@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 
-const BACKEND_URL = 'https://panaderia-backend-586791903884.us-central1.run.app';
 
 const ProductList = ({ addToCart }) => {
+
+  const BACKEND_URL = process.env.REACT_APP_BACKEND_API_URL;
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);

@@ -2,6 +2,7 @@ from fastapi import FastAPI, Depends, HTTPException, status
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from typing import List
+import os
 
 from database import engine, Base, get_db
 import models, schemas
@@ -17,8 +18,8 @@ app = FastAPI(title="API de Panadería")
 origins = [
     "http://localhost",
     "http://localhost:3000",
-    "https://panaderia-backend-586791903884.us-central1.run.app", # URL backend
-    "https://panaderia-frontend-586791903884.us-central1.run.app" # URL frontend
+    os.environ.get("URL_BACKEND"),
+    os.environ.get("URL_FRONTEND")
 ]
 
 app.add_middleware(
